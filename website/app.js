@@ -1,5 +1,5 @@
 /* Global Variables */
-const baseUrl = 'https://api.openweathermap.org/data/2.5/weather?zip=';
+const baseUrl = 'http://api.openweathermap.org/data/2.5/weather?units=metric&q=';
 const apiKey = '3d7aa46d5ff370fec3541241e8014f24';
 
 const date = document.querySelector('#date');
@@ -62,8 +62,8 @@ const postData = async(url, data) => {
 async function getWeatherData(baseUrl, zip, key){
     //1- fetch call with API to openWeatherMap
     //https://api.openweathermap.org/data/2.5/weather?zip=94040,us&appid=3d7aa46d5ff370fec3541241e8014f24#
-    console.log(baseUrl+zip+',us&appid='+key);
-    return await fetch(baseUrl+zip+',us&appid='+key);
+    console.log(baseUrl+zip+key);
+    return await fetch(baseUrl+zip+'&appid='+key);
     
 }
 
