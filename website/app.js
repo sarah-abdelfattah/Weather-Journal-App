@@ -9,6 +9,8 @@ const feelsLike = document.querySelector('#feels_like');
 const tempMain = document.querySelector('#temp_main');
 const content = document.querySelector('#content');
 
+const generateBtn = document.getElementById('generate');
+
 
 // Create a new date instance dynamically with JS
 let d = new Date();
@@ -69,6 +71,7 @@ async function getWeatherData(baseUrl, zip, key){
 
 
 async function performAction() {
+    generateBtn.textContent = 'Generating...';
     //user's data
     const newZip = document.getElementById('zip').value;
     const feelings = document.getElementById('feelings').value;
@@ -82,8 +85,8 @@ async function performAction() {
 
     //my variables = data recieved from Openweather 
     const city = res.name.toString();
-    const temp = (Math.floor(Number(res.main.temp) - 273.15))+ '°C';
-    const tempFeelsLike = (Math.floor(Number(res.main.feels_like) - 273.15)) + '°C';
+    const temp = res.main.temp + ' °C';
+    const tempFeelsLike = res.main.feels_like + ' °C';
     const main = res.weather[0].main.toString();
     
     //POST data to server
@@ -92,6 +95,7 @@ async function performAction() {
 
     // GET request .. to server .. to get the last ProjectData
     getData('getData');
+    generateBtn.textContent = 'Generate';
 }
 
 document.getElementById('generate').addEventListener('click', performAction);
